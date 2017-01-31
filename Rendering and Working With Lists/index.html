@@ -1,10 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head
+<meta charset="utf-8">
+<title>VueJS Tutorial</title>
+<!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">-->
+
 </head>
+<style>
+    .completed { text-decoration: line-through; cursor: pointer }
+    li { cursor: pointer }
+    .completed::after { content: "\2713"; }
+</style>
 <body>
 
+
+
+
+<div id="app">
+
+    <my-tasks :list="tasks"></my-tasks>
+
+</div>
+
+<template id="tasks-template">
+    <h2>
+        My Tasks
+        <span v-show="remaining"> ({{ remaining }}) </span>
+    </h2>
+
+    <ul v-show="list.length">
+        <!--<li class=" {{ task.completed ? 'completed' : 'not_completed' }} " v-for="task in tasks"> {{ task.body }} </li>-->
+        <li :class="{'completed' : task.completed}
+            "v-for="task in list"
+            @click="task.completed =! task.completed;"
+
+        >
+            {{ task.body }}
+
+            <strong @click="deleteTask(task)">x</strong>
+        </li>
+    </ul>
+    <p v-else>No tasks yet!</p>
+
+    <button @click="clearCompleted">Clear Completed</button>
+
+    <br/><hr/>
+    <input
+            id="newTaskText"
+            v-on:keyup.enter="addNewTask"
+            placeholder="Add new task!"
+    >
+</template>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>
+<script src="main.js"></script>
+
+<script>
+
+</script>
 </body>
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head
+  <meta charset="utf-8">
+  <title>VueJS Tutorial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+
+</head>
+<body>
+
+<!--
+    Use the older version of VueJS due to the tutorial videos are old
+-->
+<!-- <script src="vue.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.js"></script>
+
+
+<div id="app">
+  <pre>
+    {{ $data | json }}
+  </pre>
+  <div v-for="plan in plans">
+    <plan :plan="plan" :active.sync="active">
+  </div>
+</div>
+
+<template id="plan-template">
+  <div>
+    <span>{{ plan.name }}</span>
+    <span>{{ plan.price }}/month</span>
+    <button @click="setActivePlan">
+      {{ isUpgrade ? 'Upgrade' : 'Downgrade' }}
+    </button>
+  </div>
+</template>
+  <script>
+
+  new Vue({
+    el: "#app",
+
+    data: {
+      plans: [
+        { name: 'Enterprise', price: 100 },
+        { name: 'Pro', price: 50 },
+        { name: 'Personal', price: 10 },
+        { name: 'Free', price: 0 }
+      ],
+      active: {}
+    },
+
+    components:{
+      plan: {
+        template: '#plan-template',
+        props: ['plan','active'],
+
+        computed: {
+          isUpgrade: function () {
+
+          }
+        },
+
+        methods: {
+          setActivePlan: function(){
+              this.active = this.plan;
+          }
+        }
+
+      }
+
+    }
+  });
+  </script>
+</body>
+</html>

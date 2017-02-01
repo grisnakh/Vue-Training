@@ -46,11 +46,13 @@
 
     <br/><hr/>
     <input
-            id="newTaskText"
+            v-model="newTaskText"
             v-on:keyup.enter="addNewTask"
             placeholder="Add new task!"
     >
 </template>
+
+  <ul.list
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.8/vue.js"></script>

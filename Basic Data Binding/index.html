@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head
+<meta charset="utf-8">
+<title>VueJS 2 Tutorial</title>
+</head>
+
+<style></style>
+<body>
+
+<h1>Basic Data Binding</h1>
+<div id="root">
+    <input type="text" id="input" v-model="message" />
+    <p>
+        The value of the input is: {{ message }}
+    </p>
+</div>
+<hr/>
+
+<h1>Lists</h1>
+
+<div id="lists">
+    <ul>
+        <li v-for="name in names" v-text="name"></li>
+    </ul>
+
+    <input type="text" v-model="newName" />
+    <button @click="addName" > Add Name </button>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+
+
+
+<script>
+
+    new Vue({
+        el: "#root",
+        data: {
+            message: "Hello World"
+        }
+    })
+
+    new Vue({
+        el: "#lists",
+        data: {
+            newName: '',
+            names: [ 'Joe','Mary','Jane','Jack' ]
+        },
+        methods: {
+            addName: function () {
+                this.names.push(this.newName);
+                this.newName = '';
+            }
+        }
+    })
+</script>
+
+</body>
+</html>
